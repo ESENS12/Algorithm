@@ -35,9 +35,47 @@ N개의 수가 주어졌을 때, 이를 오름차순으로 정렬하는 프로�
 #num = int(input())
 sort = []
 
+# 병합 정렬(오름차순)
+def merge(left, right):
+    result = []
+
+    while len(left) > 0 or len(right) > 0:
+        if len(left) > 0 and len(right) > 0:
+            if left[0] <= right[0]:
+                result.append(left[0])
+                left = left[1:]
+            else:
+                result.append(right[0])
+                right = right[1:]
+
+        elif len(left) > 0:
+            result.append(left[0])
+            left = left[1:]
+
+        elif len(right) > 0:
+            result.append(right[0])
+            right = right[1:]
+
+    return result
+
+
+def merge_sort(sort):
+    if len(sort) <= 1:
+        return sort
+
+    mid = int(len(sort) / 2)
+
+    leftList = sort[:mid]
+    rightList = sort[mid:]
+
+    leftList = merge_sort(leftList)
+    rightList = merge_sort(rightList)
+
+    return merge(leftList, rightList)
+
+
 # 버블정렬 ..(오름차순)
 # 자기자신보다 큰 수를 만나면 switch
-
 def bubble_sort(sort):
     print("bubble_sort start ------")
     sort = list(sort)
@@ -88,5 +126,6 @@ def print_sorted(sort):
 
 sort = [5,2,3,4,1]
 #print(sort)
-bubble_sort(sort)
-select_sort(sort)
+#bubble_sort(sort)
+#select_sort(sort)
+print(merge_sort(sort))
