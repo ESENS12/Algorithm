@@ -1,5 +1,5 @@
 '''
-백준 알고리즘 1011 문제 풀이
+백준 알고리즘 1475 문제 풀이
 작성자 ESENS
 작성일 180409
 
@@ -31,6 +31,6 @@ def count(var):
     else:
         data[9] = int(data[9] / 2) + 1
     print(max(data))
-
+    return 0
 
 count(input())
