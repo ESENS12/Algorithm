@@ -40,8 +40,6 @@ for i in range (1,16):
     dp[0][i-1] = i
     dp[i-1][0] = 1
 
-
-
 for i in range(1,15):
     for j in range(1,15):
         #현재 호실 = 아랫층 현재 호실 + 현재층 이전 호실
