@@ -31,33 +31,30 @@
 
 출력
 30
+
 '''
-dp = [-1]*10000
-count = 0
-temp = []
-data = []
-tri = []
 
-# tri[i]에서 가장 큰 값 선택(index) -> tri[i+1]에서 index+1 or index-1중 가장 큰 값 선택 -> ...반복
-def fibo(n) :
-    if dp[n] != -1:
-        return dp[n]
-    else:
-        return;
-
+# data[i][0] 일때(각 층의 첫번째 원소) data[i+1][0]은 data[i][0] + data[i+1][0] 이고
+# data[i][i] 일때(각 층의 마지막 원소) data[i+1][i]는 data[i][i] + data[i+1][i] 이다.
+# 이외에는 선택지가 2가지 이므로 data[i][j]는 max(data[i-1][j] + data[i][j], data[i-1][j-1] + data[i][j])
 
 #삼각형의 크기
 count = int(input())
+data = [[0]*i for i in range(1, count+1)]
+
+for i in range(0, count):
+    my_str = input()
+    for j in range(0, i+1):
+        data[i][j] = int(my_str.split()[j])
 
 
-if count<=500 and count>0 :
-    for i in range(0, count):
-        data = input()
-        for char in data:
-            if char != " ":
-                temp.append(char)
-        tri.append(temp)
-        temp = []
+for i in range(1, len(data)):
+    for j in range(0, i+1):
+        if j==0:
+            data[i][j] += data[i-1][j]
+        elif i==j:
+            data[i][j] += data[i-1][j-1]
+        else:
+            data[i][j] = max(data[i][j] + data[i-1][j-1], data[i][j] + data[i-1][j])
 
-#print(tri)
-
+print(max(data[-1]))
