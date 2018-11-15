@@ -30,7 +30,7 @@ def solution(N, A):
                 max = counter[i-1]
             #print(counter)
     return counter
-    
+     
     
  '''
  현재 시간복잡도는 O(n+m)으로
