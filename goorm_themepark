@@ -2,63 +2,25 @@
 # UTF-8 encoding when using korean
 
 # quest url : https://level.goorm.io/exam/88520/%EB%86%80%EC%9D%B4%EA%B3%B5%EC%9B%90/quiz/1
+# 첫줄이 테스트 케이스 갯수
+testCaseNum = int(input())
+answer = []
 
-# 주어진 array 범위 내에 1의 갯수를 반환하는 함수
-def getNumberOfone(_iter, idx_column, idx_row, num_range):
-	number_ = 0;
-	print("idx_column : " , idx_column , ", idx_row : " , idx_row, " , num_range : " , num_range)
-	for i in range(idx_column, len(_iter)):
-		for j in range(idx_row, len(_iter[i])):
-			if(j <= (len(_iter[j]) - num_range)):
-				# print("i : " , i,", j : ", j,"_iter[i][j] : " , _iter[i][j])
-				if(_iter[i][j] > 0):
-					number_ = number_ + 1
-			else:
-				continue
-	print('number_ : ' , number_)
-	return number_
+for _ in range(testCaseNum):
+    n, k = map(int, input().split())
+    matrix = []
+    for _ in range(n):
+        str_split = input().split()
+        print(list(map(int, str_split)))
+        matrix.append(list(map(int, str_split)))
+        
+    result = []
+    print(matrix)
+    for y in range(n-k+1):
+        for x in range(n-k+1):
+            result.append(sum(sum([row[x:x+k] for row in matrix[y:y+k]], [])))
 
-test_case_num = int(input())
-glob_result = []
-
-# for line_index in test_case_num:
-# 	first_line = input()
-# 	empty_land_size = int(first_line.split(" ")[0]) #주어진 공터의 사이즈 (N X N)
-# 	buy_land_size = int(first_line.split(" ")[1])		#구매할 땅의 사이즈 (M X M)
-	
-# first_line = []
-#
-# first line is number of test case
-# print("test_case_num : " , test_case_num)
-for i in range(0, test_case_num):
-	# print("test_case_start :: ")
-	first_line = input()
-	empty_land_size = int(first_line.split(" ")[0]) #주어진 공터의 사이즈 (N X N)
-	buy_land_size = int(first_line.split(" ")[1])		#구매할 땅의 사이즈 (M X M)
-	
-	arr_land = [[0] * empty_land_size for _ in range(0,empty_land_size)]
-	
-	for j in range(0,empty_land_size):
-		arr_line = []
-		arr_line = input().split(" ")
-		# hard copy to arr_land array
-		for k in range(0,len(arr_line)):
-			arr_land[j][k] = int(arr_line[k]);
-	
-	n_one = 0
-	startidx = 0;
-	arr_one = []
-	print("empty_land_size - buy_land_size) + 1 : " , (empty_land_size - buy_land_size +1))
-	for h in range(0,(empty_land_size - buy_land_size) + 1):
-		for j in range(0,(empty_land_size - buy_land_size) + 1):
-		
-			n_one = getNumberOfone(arr_land, h, j, buy_land_size)
-			arr_one.append(n_one)
-			print('column idx : ' , h, ', row idx : ', j,', n_one : ' , n_one)
-	# print("end :: ")
-	# print(min(arr_one))
-	glob_result.append(min(arr_one))
-	
-for answer in glob_result:
-	print(answer)
-	
+    answer.append(min(result))
+    
+for a in answer:
+    print(a)
