@@ -1,7 +1,4 @@
-/**
-* 아직 테스트케이스 전부 통과하지 못함.
-*
-*/
+
 
 private int solution(int bl, int tot_we, int[] trucks){
 
@@ -21,21 +18,25 @@ private int solution(int bl, int tot_we, int[] trucks){
             truck_queue.add(item);
         }
 
-        while(truck_queue.peek() != null){
-            result++;
-            int weight = bridge_queue.poll();
-
-            int truck_weight = truck_queue.peek();
-            bridge_weight = bridge_weight - weight;
-
-            if(tot_we >= (bridge_weight + truck_weight)){
-
-                bridge_queue.add(truck_queue.poll());
-                bridge_weight = bridge_weight + truck_weight;
-            }else{
-                bridge_queue.add(0);
+        while(true){
+            //when last trucks on the bridge
+            if(truck_queue.peek() == null){
+                result+=bl;
+                break;
             }
+            int weight = bridge_queue.poll();
+            if(truck_queue.peek() != null){
+                int truck_weight = truck_queue.peek();
+                bridge_weight = bridge_weight - weight;
+
+                if(tot_we >= (bridge_weight + truck_weight)) {
+
+                    bridge_queue.add(truck_queue.poll());
+                    bridge_weight = bridge_weight + truck_weight;
+                }
+
+            }
+            result++;
         }
         return result;
     }
-
