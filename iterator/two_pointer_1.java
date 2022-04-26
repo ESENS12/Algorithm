@@ -13,15 +13,16 @@ class Solution {
         while(lt<=rt){
             
             temp = nums[lt] + nums[rt];
-            println("do while lt : " + lt + ", rt : " + rt + ", temp : " + temp);
-            if(temp == target){
+            if (temp == target) {
                 results[0] = lt;
                 results[1] = rt;
                 break;
             }
-            if(target < nums[rt]){
+            if (target < nums[rt]) {
                 rt--;
-            }else if(target > nums[lt]){
+            }else if(temp > target){
+                rt--;
+            }else{
                 lt++;
             }
         }
