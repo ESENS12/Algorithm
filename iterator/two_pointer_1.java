@@ -1,5 +1,4 @@
 // 문제출처 https://leetcode.com/problems/two-sum/submissions/
-//음수처리 아직 안됨. 
 
 import java.util.Arrays;
 
