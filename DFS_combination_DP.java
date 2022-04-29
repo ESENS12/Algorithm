@@ -63,3 +63,48 @@ class Solution {
         return dfs(numbers, n + 1, sum + numbers[n], target) + dfs(numbers, n + 1, sum - numbers[n], target);
     }
 }
+
+
+// ------------------------------------------------------------------------
+void main() {
+    int[] numbers = {1, 2, 3, 4, 5};
+    boolean[] visit = {false, false, false, false, false};
+    
+    dfs(numbers, 0, visit);
+  }
+  
+  void DFS(int[] numbers, int idx, boolean[] visit) {
+    visit[idx] = true;
+  
+    for(int i : numbers) {
+       if(!visit[i])
+               DFS(numbers, i, visit);
+    }
+  }
+
+
+// ------------------------------------------------------------------------
+void main() {
+    int[] numbers = {1, 2, 3, 4, 5};
+    boolean[] visit = {false, false, false, false, false};
+    
+    BFS(numbers, 0, visit);
+  }
+  
+  void BFS(int[] numbers, int start, boolean[] visit) {
+    Queue<Integer> queue = new LinkedList();
+    queue.add(start);
+    visit[start] = true;
+    
+    while(!queue.isEmpty()) {
+       int next = queue.poll();
+      
+       for(int i : numbers) {
+         if(!visit[i]) {
+           queue.add(i);
+           visit[i] = true;
+         }
+     }
+  }
+
+
