@@ -11,6 +11,8 @@ https://programmers.co.kr/learn/challenges
 # Goorm
 https://level.goorm.io/
 
+# LeetCode
+https://leetcode.com/
 # 사용 언어
 C++, Python 코드는 regacy 폴더로 이관,
-대부분 java로 풀이
+대부분 java로 풀이 
